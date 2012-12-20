@@ -1,0 +1,3 @@
+# December 19, 2012
+	- started project (again)
+	- added functionality for the bot to connect to a server, authenticate itself, and join a channel
