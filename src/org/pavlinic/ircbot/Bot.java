@@ -14,14 +14,25 @@ public class Bot extends PircBot {
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
-        if (message.equalsIgnoreCase("!time")) {
+        if (message.equalsIgnoreCase("!time") && BotMain.allowTime) {
             String time = new java.util.Date().toString();
             sendMessage(channel, sender + ": The time is currently " + time);
         }
-        else if (message.equalsIgnoreCase("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel)) {
+        else if (message.equalsIgnoreCase("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel) && BotMain.allowOps) {
+            // no reason specified
             try {
                 sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
                         BotMain.idleChannel + ": " + OpAlert.readList());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else if (message.startsWith("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel) && BotMain.allowOps) {
+            // specify a reason
+            try {
+                sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
+                        BotMain.idleChannel + " (for reason \"" + message.substring(5) + "\"): " + OpAlert.readList());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -35,7 +46,7 @@ public class Bot extends PircBot {
             OpAlert.delName(sender);
             sendMessage(BotMain.staffChannel, sender + " has been removed from the ping list.");
         }
-        else if (message.startsWith("!kick") && channel.equalsIgnoreCase(BotMain.staffChannel)) {
+        else if (message.startsWith("!kick") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowKick) {
             sendMessage("ChanServ", "OP " + BotMain.idleChannel);
             try {
                 Thread.sleep(1000);
@@ -48,7 +59,7 @@ public class Bot extends PircBot {
                     BotMain.idleChannel + " by " + sender);
             sendMessage("ChanServ", "DEOP " + BotMain.idleChannel);
         }
-        else if (message.startsWith("!ban") && channel.equalsIgnoreCase(BotMain.staffChannel)) {
+        else if (message.startsWith("!ban") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowBan) {
             sendMessage("ChanServ", "OP " + BotMain.idleChannel);
             try {
                 Thread.sleep(1000);
@@ -61,7 +72,7 @@ public class Bot extends PircBot {
                     BotMain.idleChannel + " by " + sender);
             sendMessage("ChanServ", "DEOP " + BotMain.idleChannel);
         }
-        else if (message.startsWith("!debug") && sender.equalsIgnoreCase(botOwner))
+        else if (message.startsWith("!debug") && sender.equalsIgnoreCase(botOwner) && BotMain.allowDebug)
         {
             String debugCommand = message.substring(7);
             if (debugCommand.startsWith("join"))            // ask the bot to join a channel

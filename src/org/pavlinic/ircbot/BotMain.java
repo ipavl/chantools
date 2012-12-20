@@ -5,6 +5,7 @@ import java.util.Properties;
 
 public class BotMain {
     public static String idleChannel, staffChannel, botOwner, botUsername;
+    public static boolean allowTime, allowKick, allowBan, allowOps, allowDebug;
     
     public static void main(String[] args) throws Exception {
         Properties prop = new Properties();
@@ -21,6 +22,13 @@ public class BotMain {
                 prop.setProperty("server", "localhost");
                 prop.setProperty("idleChannel", "#NOTSET");
                 prop.setProperty("staffChannel", "#NOTSET-staff");
+                
+                // Command permissions
+                prop.setProperty("allowTime", "true");
+                prop.setProperty("allowKick", "true");
+                prop.setProperty("allowBan", "true");
+                prop.setProperty("allowOps", "true");
+                prop.setProperty("allowDebug", "true");
 
                 // Save properties
                 prop.store(new FileOutputStream(configFile), null);
@@ -34,6 +42,12 @@ public class BotMain {
             botUsername = prop.getProperty("username");
             idleChannel = prop.getProperty("idleChannel");
             staffChannel = prop.getProperty("staffChannel");
+            
+            Boolean.valueOf(prop.getProperty("allowTime"));
+            Boolean.valueOf(prop.getProperty("allowKick"));
+            Boolean.valueOf(prop.getProperty("allowBan"));
+            Boolean.valueOf(prop.getProperty("allowOps"));
+            Boolean.valueOf(prop.getProperty("allowDebug"));
             
             // Start the bot
             Bot bot = new Bot();

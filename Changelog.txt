@@ -9,6 +9,8 @@
 	- bot settings are now stored in data/bot.properties
 	- added !debug nick to change the name of the bot while it is running
 	- added !debug shutdown to shut the bot down remotely
+	- !ops now accepts a reason parameter (optional) for requesting operator attention
+	- permissions for each command can now be set via the properties file
 
 # December 19, 2012
 	- started project (again)
