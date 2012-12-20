@@ -1,6 +1,14 @@
 # December 20, 2012
 	- !pingme off now works correctly
 	- !ops will now output the list of names in the "ping list" to the staff channel to alert channel operators
+	- added !kick and !ban to "anonymously" kick/ban users from the "watch" channel via the staff channel
+		- bot will request channel operator status from services (ChanServ), kick/ban desired user, and then de-op itself
+		- will be logged in staff channel
+		- to prevent abuse, security should be placed on the staff channel as the bot will only accept commands from that channel
+	- the bot will now identify with services using a safer method
+	- bot settings are now stored in data/bot.properties
+	- added !debug nick to change the name of the bot while it is running
+	- added !debug shutdown to shut the bot down remotely
 
 # December 19, 2012
 	- started project (again)

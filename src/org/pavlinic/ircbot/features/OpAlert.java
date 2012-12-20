@@ -4,9 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class OpAlert {
-    public static String watchChannel = "##ordona";
-    public static String staffChannel = "##ordona-staff";
-    private static Scanner scanner;
+    static Scanner scanner;
 
     public static void addName(String name)
     {
