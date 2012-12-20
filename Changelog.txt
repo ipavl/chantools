@@ -1,3 +1,7 @@
+# December 20, 2012
+	- !pingme off now works correctly
+	- !ops will now output the list of names in the "ping list" to the staff channel to alert channel operators
+
 # December 19, 2012
 	- started project (again)
 	- added functionality for the bot to connect to a server, authenticate itself, and join a channel

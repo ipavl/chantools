@@ -1,10 +1,12 @@
 package org.pavlinic.ircbot.features;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class OpAlert {
     public static String watchChannel = "##ordona";
     public static String staffChannel = "##ordona-staff";
+    private static Scanner scanner;
 
     public static void addName(String name)
     {
@@ -40,11 +42,11 @@ public class OpAlert {
                     continue;
                 writer.write(currentLine);
             }
-
-            tempFile.renameTo(inputFile);
-
             reader.close();
             writer.close();
+
+            inputFile.delete();
+            tempFile.renameTo(inputFile);
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -52,5 +54,22 @@ public class OpAlert {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static String readList() throws IOException {
+        File file = new File("data/op-alert.lst");
+        String list = "";
+        
+        try {
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                list += line + " ";
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+        return list;
     }
 }

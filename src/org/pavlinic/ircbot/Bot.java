@@ -1,5 +1,7 @@
 package org.pavlinic.ircbot;
 
+import java.io.IOException;
+
 import org.jibble.pircbot.*;
 import org.pavlinic.ircbot.features.*;
 
@@ -17,8 +19,13 @@ public class Bot extends PircBot {
             sendMessage(channel, sender + ": The time is currently " + time);
         }
         else if (message.equalsIgnoreCase("!ops") && channel.equalsIgnoreCase(OpAlert.watchChannel)) {
-            sendMessage(OpAlert.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
-                    OpAlert.watchChannel + ": " /* TODO: Read list from file */);
+            try {
+                sendMessage(OpAlert.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
+                        OpAlert.watchChannel + ": " + OpAlert.readList());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         else if (message.equalsIgnoreCase("!pingme on") && channel.equalsIgnoreCase(OpAlert.staffChannel)) {
             OpAlert.addName(sender);
