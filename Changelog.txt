@@ -1,3 +1,15 @@
 # December 19, 2012
 	- started project (again)
 	- added functionality for the bot to connect to a server, authenticate itself, and join a channel
+	- added !time
+	- added !ops
+		- when typed in a "watch channel", the operators of said channel will be pinged in a "staff channel" that
+		  someone needs operator attention in the "watch channel"
+		- !pingme on will add the user who used the command to the ping list
+		- !pingme off will remove the user who used the command from the ping list (unfinished)
+		- TODO: read and output the ping list to the staff channel when !ops is used in the watch channel
+	- added !debug
+		- allows the owner of the bot to control the bot
+			- !debug join <channel> will ask the bot to join a channel
+			- !debug part [channel] will ask the bot to part a channel if specified, otherwise it will part the one
+			  the command was typed in
