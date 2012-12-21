@@ -12,6 +12,9 @@ public class BotMain {
         String configFile = "data/bot.properties";
         
         try {
+            File dir = new File("data");
+            dir.mkdir(); 
+            
             // If the settings doesn't exist, create it
             File file = new File(configFile);
             if(!file.exists()) {
