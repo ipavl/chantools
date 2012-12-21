@@ -1,6 +1,5 @@
 package org.pavlinic.ircbot;
 
-import java.io.IOException;
 import org.jibble.pircbot.*;
 import org.pavlinic.ircbot.features.*;
 
@@ -20,23 +19,13 @@ public class Bot extends PircBot {
             }
             else if (message.equalsIgnoreCase("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel) && BotMain.allowOps) {
                 // no reason specified
-                try {
-                    sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
-                            BotMain.idleChannel + ": " + OpAlert.readList());
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
+                        BotMain.idleChannel + ": " + OpAlert.readList());
             }
             else if (message.startsWith("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel) && BotMain.allowOps) {
                 // specify a reason
-                try {
-                    sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
-                            BotMain.idleChannel + " (for reason \"" + message.substring(5) + "\"): " + OpAlert.readList());
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
+                        BotMain.idleChannel + " (for reason \"" + message.substring(5) + "\"): " + OpAlert.readList());
             }
             else if (message.equalsIgnoreCase("!pingme on") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowOps) {
                 OpAlert.addName(sender);
