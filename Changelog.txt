@@ -3,6 +3,7 @@
 	- commands now have error catching
 	- file paths now use \\ as opposed to /
 	- !pingme off should now handle using the temporary list file correctly again
+	- added !debug say to be able to speak through the bot
 
 # December 20, 2012
 	- !pingme off now works correctly
