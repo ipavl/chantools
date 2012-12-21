@@ -38,11 +38,11 @@ public class Bot extends PircBot {
                 e.printStackTrace();
             }
         }
-        else if (message.equalsIgnoreCase("!pingme on") && channel.equalsIgnoreCase(BotMain.staffChannel)) {
+        else if (message.equalsIgnoreCase("!pingme on") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowOps) {
             OpAlert.addName(sender);
             sendMessage(BotMain.staffChannel, sender + " has been added to the ping list.");
         }
-        else if (message.equalsIgnoreCase("!pingme off") && channel.equalsIgnoreCase(BotMain.staffChannel)) {
+        else if (message.equalsIgnoreCase("!pingme off") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowOps) {
             OpAlert.delName(sender);
             sendMessage(BotMain.staffChannel, sender + " has been removed from the ping list.");
         }
