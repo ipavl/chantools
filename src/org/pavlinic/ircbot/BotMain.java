@@ -18,6 +18,12 @@ public class BotMain {
             // If the settings doesn't exist, create it
             File file = new File(configFile);
             if(!file.exists()) {
+                System.out.println("\n ******************************************************************************");
+                System.out.println(" ** NOTICE ** THIS APPEARS TO BE THE FIRST TIME YOU'VE RUN THE BOT. YOU MUST **");
+                System.out.println(" ** NOTICE ** EDIT THE bot.properties FILE IN THE data FOLDER BEFORE THE BOT **");
+                System.out.println(" ** NOTICE ** WILL BE ABLE TO CONNECT TO A SERVER THAT ISN'T A LOCALHOST ONE **");
+                System.out.println(" ******************************************************************************\n");
+                
                 // Set default property values
                 prop.setProperty("owner", "ipavl");
                 prop.setProperty("username", "myBotName");
