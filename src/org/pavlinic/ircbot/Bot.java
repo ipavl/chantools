@@ -4,8 +4,6 @@ import org.jibble.pircbot.*;
 import org.pavlinic.ircbot.features.*;
 
 public class Bot extends PircBot {
-    static String botOwner = BotMain.botOwner; 
-
     // Constructor
     public Bot() {
         this.setName(BotMain.botUsername);
@@ -51,7 +49,7 @@ public class Bot extends PircBot {
                         BotMain.idleChannel + " by " + sender);
                 sendMessage("ChanServ", "DEOP " + BotMain.idleChannel);
             }
-            else if (message.startsWith("!debug") && sender.equalsIgnoreCase(botOwner) && BotMain.allowDebug)
+            else if (message.startsWith("!debug") && sender.equalsIgnoreCase(BotMain.botOwner) && BotMain.allowDebug)
             {
                 String debugCommand = message.substring(7);
                 if (debugCommand.startsWith("join"))            // ask the bot to join a channel
