@@ -12,7 +12,7 @@ public class OpAlert {
             File dir = new File("data");
             dir.mkdir();  
 
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/op-alert.lst", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data\\op-alert.lst", true)));
             out.println(name);
             out.close();
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class OpAlert {
 
     public static void delName(String name)
     {
-        File inputFile = new File("data/op-alert.lst");
+        File inputFile = new File("data\\op-alert.lst");
         File tempFile = new File(inputFile + ".tmp");
 
         try {
@@ -43,8 +43,9 @@ public class OpAlert {
             reader.close();
             writer.close();
 
-            inputFile.delete();
-            tempFile.renameTo(inputFile);
+            boolean success = inputFile.delete();
+            if (success)
+                tempFile.renameTo(inputFile);
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -55,7 +56,7 @@ public class OpAlert {
     }
 
     public static String readList() throws IOException {
-        File file = new File("data/op-alert.lst");
+        File file = new File("data\\op-alert.lst");
         String list = "";
         
         try {

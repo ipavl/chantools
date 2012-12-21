@@ -1,3 +1,9 @@
+# December 21, 2012
+	- command permissions are now read correctly from bot.properties
+	- commands now have error catching
+	- file paths now use \\ as opposed to /
+	- !pingme off should now handle using the temporary list file correctly again
+
 # December 20, 2012
 	- !pingme off now works correctly
 	- !ops will now output the list of names in the "ping list" to the staff channel to alert channel operators

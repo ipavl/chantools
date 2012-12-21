@@ -9,7 +9,7 @@ public class BotMain {
     
     public static void main(String[] args) throws Exception {
         Properties prop = new Properties();
-        String configFile = "data/bot.properties";
+        String configFile = "data\\bot.properties";
         
         try {
             File dir = new File("data");
@@ -52,11 +52,11 @@ public class BotMain {
             idleChannel = prop.getProperty("idleChannel");
             staffChannel = prop.getProperty("staffChannel");
             
-            Boolean.valueOf(prop.getProperty("allowTime"));
-            Boolean.valueOf(prop.getProperty("allowKick"));
-            Boolean.valueOf(prop.getProperty("allowBan"));
-            Boolean.valueOf(prop.getProperty("allowOps"));
-            Boolean.valueOf(prop.getProperty("allowDebug"));
+            allowTime = Boolean.parseBoolean(prop.getProperty("allowTime"));
+            allowKick = Boolean.parseBoolean(prop.getProperty("allowKick"));
+            allowBan = Boolean.parseBoolean(prop.getProperty("allowBan"));
+            allowOps = Boolean.parseBoolean(prop.getProperty("allowOps"));
+            allowDebug = Boolean.parseBoolean(prop.getProperty("allowDebug"));
             
             // Start the bot
             Bot bot = new Bot();
