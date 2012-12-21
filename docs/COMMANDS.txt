@@ -21,6 +21,7 @@ COMMANDS:
 	!debug part [channel]
 	!debug nick <name>
 	!debug shutdown
+	!debug say <target> <message>
 	
 ADDITIONAL PERMISSIONS & NOTES:
  - allowKick and allowBan generally require the bot to have operator status, or at least the +o flag in ChanServ so it may request it
