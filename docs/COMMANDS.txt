@@ -1,0 +1,23 @@
+COMMAND LIST
+============
+
+SYNTAX:
+ - permission (in data\bot.properties)
+	!command <required> [optional]
+
+COMMANDS:
+ - allowTime
+	!time
+ - allowOps
+	!ops [reason]
+	!pingme on
+	!pingme off
+ - allowKick
+	!kick <target>
+ - allowBan
+	!ban <target>
+ - allowDebug
+	!debug join <channel>
+	!debug part [channel]
+	!debug nick <name>
+	!debug shutdown
