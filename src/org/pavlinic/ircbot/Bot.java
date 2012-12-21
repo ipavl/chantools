@@ -1,7 +1,6 @@
 package org.pavlinic.ircbot;
 
 import java.io.IOException;
-
 import org.jibble.pircbot.*;
 import org.pavlinic.ircbot.features.*;
 
