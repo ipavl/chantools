@@ -13,10 +13,19 @@ public class Bot extends PircBot {
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         try {
+            /*  !time
+             * 
+             *  Displays the current time.
+             */
             if (message.equalsIgnoreCase("!time") && BotMain.allowTime) {
                 String time = new java.util.Date().toString();
                 sendMessage(channel, sender + ": The time is currently " + time);
             }
+            
+            /*  !ops [reason]
+             *
+             *  Used to ping Alert channel operators of problems.
+             */
             else if (message.equalsIgnoreCase("!ops") && channel.equalsIgnoreCase(BotMain.idleChannel) && BotMain.allowOps) {
                 // no reason specified
                 sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
@@ -27,6 +36,11 @@ public class Bot extends PircBot {
                 sendMessage(BotMain.staffChannel, sender + " (" + login + "@" + hostname + ") wants operator attention in " + 
                         BotMain.idleChannel + " (for reason \"" + message.substring(5) + "\"): " + OpAlert.readList());
             }
+            
+            /*  !pingme <on/off>
+             * 
+             *  Used to add/remove yourself from the alert list for !ops.
+             */
             else if (message.equalsIgnoreCase("!pingme on") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowOps) {
                 OpAlert.addName(sender);
                 sendMessage(BotMain.staffChannel, sender + " has been added to the ping list.");
@@ -35,6 +49,11 @@ public class Bot extends PircBot {
                 OpAlert.delName(sender);
                 sendMessage(BotMain.staffChannel, sender + " has been removed from the ping list.");
             }
+            
+            /*  !kick <user>
+             * 
+             *  Used to kick a user from the watch channel. Must be sent via the staff channel.
+             */
             else if (message.startsWith("!kick") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowKick) {
                 sendMessage("ChanServ", "OP " + BotMain.idleChannel);
                 Thread.sleep(1000); // allow time to receive op status
@@ -43,6 +62,11 @@ public class Bot extends PircBot {
                         BotMain.idleChannel + " by " + sender);
                 sendMessage("ChanServ", "DEOP " + BotMain.idleChannel);
             }
+            
+            /*  !ban <user>
+             * 
+             *  Sets a nick!*@* ban on the specified user in the watc channel. Must be sent via the staff channel.
+             */
             else if (message.startsWith("!ban") && channel.equalsIgnoreCase(BotMain.staffChannel) && BotMain.allowBan) {
                 sendMessage("ChanServ", "OP " + BotMain.idleChannel);
                 Thread.sleep(1000); // allow time to receive op status
@@ -51,6 +75,11 @@ public class Bot extends PircBot {
                         BotMain.idleChannel + " by " + sender);
                 sendMessage("ChanServ", "DEOP " + BotMain.idleChannel);
             }
+            
+            /*  !debug <command> [parameters]
+             * 
+             *  Commands used for development/debugging to have more control over the bot.
+             */
             else if (message.startsWith("!debug") && sender.equalsIgnoreCase(BotMain.botOwner) && BotMain.allowDebug)
             {
                 String debugCommand = message.substring(7);
