@@ -60,6 +60,8 @@ public class Bot extends PircBot {
                     partChannel(debugCommand.substring(5));
                 else if (debugCommand.startsWith("nick"))
                     changeNick(debugCommand.substring(5));
+                else if (debugCommand.startsWith("opme"))
+                    op(channel, sender);
                 else if (debugCommand.startsWith("say"))
                 {
                     String[] split = debugCommand.substring(4).split("\\s+");

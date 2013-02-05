@@ -1,3 +1,6 @@
+# February 4, 2013
+	- added !debug opme for testing purposes in case it's a throwaway channel and you lose op status but the bot hasn't
+
 # December 21, 2012
 	- command permissions are now read correctly from bot.properties
 	- commands now have error catching
