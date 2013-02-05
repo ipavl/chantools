@@ -7,6 +7,8 @@ public class Bot extends PircBot {
     // Constructor
     public Bot() {
         this.setName(BotMain.botUsername);
+        this.setLogin("ChanTools");
+        this.setVersion("PircBot 1.5.0 with ChanTools 0.1 by ipavl");
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
