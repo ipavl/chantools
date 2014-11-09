@@ -83,21 +83,50 @@ public class Bot extends PircBot {
             else if (message.startsWith("!debug") && sender.equalsIgnoreCase(BotMain.botOwner) && BotMain.allowDebug)
             {
                 String debugCommand = message.substring(7);
-                if (debugCommand.startsWith("join"))            // ask the bot to join a channel
+                
+                /*
+                 *  Ask the bot to join a channel.
+                 */
+                if (debugCommand.startsWith("join"))
                     joinChannel(debugCommand.substring(5));
-                else if (debugCommand.equalsIgnoreCase("part")) // ask the bot to part the current channel
+                /*
+                 *  Ask the bot to part a channel; if none are specified it will part the current channel.
+                 */
+                else if (debugCommand.equalsIgnoreCase("part"))
                     partChannel(channel);
-                else if (debugCommand.startsWith("part"))       // ask the bot to part a channel
+                else if (debugCommand.startsWith("part"))
                     partChannel(debugCommand.substring(5));
+                
+                /*
+                 *  Change the bot's nickname.
+                 */
                 else if (debugCommand.startsWith("nick"))
                     changeNick(debugCommand.substring(5));
+                
+                /*
+                 *  Ask the bot to give you operator status.
+                 */
                 else if (debugCommand.startsWith("opme"))
                     op(channel, sender);
+                
+                /*
+                 *  Manually make the bot speak (must specify destination and message).
+                 */
                 else if (debugCommand.startsWith("say"))
                 {
                     String[] split = debugCommand.substring(4).split("\\s+");
-                    sendMessage(split[0], split[1]);
+                    String sendMsg = "";
+                    
+                    for (int i = 1; i < split.length; i++) {
+                        sendMsg += split[i] + " ";
+                    }
+                    
+                    sendMessage(split[0], sendMsg);
                 }
+                
+                /*
+                 *  Shut the bot down.
+                 */
                 else if (debugCommand.equalsIgnoreCase("shutdown"))
                     System.exit(0);
             }
