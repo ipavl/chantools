@@ -27,4 +27,4 @@ Usage
 Commands
 --------
 
-See `docs/commands.txt'.
+See `docs/commands.txt`.
